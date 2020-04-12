@@ -10,7 +10,7 @@ import java.io.IOException;
  * @phone 176****7037
  */
 public class ServiceFactory {
-    private void createService() throws IOException {
+    public static void createService() throws IOException {
         String path = Test.PATH + Test.PACK + "\\service\\";
         String serviceImplPath = path + "\\impl\\";
 

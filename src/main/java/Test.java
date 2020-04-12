@@ -23,15 +23,11 @@ public class Test {
     public static void main(String[] args) throws IOException, DocumentException {
                 Test test = new Test();
         test.readBean();
-        ApplicationFactory.createApplication();
+//        ApplicationFactory.createApplication();
         MapperFactory.createDAO();
-//        Test test = new Test();
-//        test.createApplication();
-//        test.readBean();
-//        test.createDAO();
-//        test.createMybatisXML();
-//        test.addApplication();
-//        test.createService();
+        ServiceFactory.createService();
+        test.createMybatisXML();
+        test.addApplication();
         System.out.println();
 
     }

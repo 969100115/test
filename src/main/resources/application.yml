@@ -1,3 +1,15 @@
 spring:
-	profiles:
-		active: dev
+  profiles:
+    active: prod
+
+mybatis:
+  type-aliases-package: test.bean
+  mapper-locations: classpath*:mapper/*Mapper.xml
+  configuration:
+    map-underscore-to-camel -case: true
+
+# 通用mapper
+mapper:
+  mappers: tk.mybatis.mapper.common.Mapper
+  not-empty: false
+  identity: MYSQL
