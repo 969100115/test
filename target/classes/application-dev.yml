@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: 6236096fwb
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.example.entity

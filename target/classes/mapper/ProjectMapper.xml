@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.dao.ProjectMapper">
+
+    <select id="listProjectByType" resultType="test.bean.Project" parameterType="String">
+        select * from project where type = #{type}
+    </select>
+    <select id="searchByName" resultType="test.bean.Project" parameterType="String">
+        select * from project where name like '%'#{type}'%'
+    </select>
+
+
+</mapper>
+

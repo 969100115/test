@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    username: root
+    password: Shga@3306
+    url: jdbc:mysql://sh-cdb-ekszwzsw.sql.tencentcdb.com:62208/test?useUnicode=true&autoReconnect=true&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF-8&useSSL=false&allowMultiQueries=true&serverTimezone=GMT%2b8
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  type-aliases-package: com.example.entity
