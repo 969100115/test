@@ -12,7 +12,7 @@ public class OrderVO {
     String status;
     String createTime;
     String testPredictTime;
-    String testComleteTime;
+    String testCompleteTime;
     String orderCompleteTime;
 
     public static OrderVO createOrderVO(Order order) {

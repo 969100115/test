@@ -10,7 +10,7 @@ public class OrderParams extends BaseParams {
     String status;
     String createTime;
     String testPredictTime;
-    String testComleteTime;
+    String testCompleteTime;
     String orderCompleteTime;
 
 }

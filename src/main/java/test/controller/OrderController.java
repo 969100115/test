@@ -1,11 +1,14 @@
 package test.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import test.bean.Content;
 import test.bean.Order;
@@ -24,12 +27,13 @@ import java.util.List;
 @RestController
 @RequestMapping("order/")
 @Slf4j
+@Api(value = "订单管理")
 public class OrderController {
 
     @Autowired
     OrderService orderService;
-
-    @RequestMapping("add")
+    @ApiOperation(value = "新建订单",httpMethod = "POST")
+    @RequestMapping(value = "add",method = RequestMethod.POST)
     public ResultBean addContent (@RequestBody OrderParams params){
         Order order = new Order();
         BeanUtils.copyProperties(params,order);
@@ -38,20 +42,20 @@ public class OrderController {
         BeanUtils.copyProperties(params,orderVO);
         return new ResultBean(orderVO, ResultEnum.SUCCESS);
     }
-
-    @RequestMapping("listByUserId")
+    @ApiOperation(value = "查询用户所有订单，按状态分类",httpMethod = "POST")
+    @RequestMapping(value = "listByUserId",method = RequestMethod.POST)
     public ResultBean listOrderByUserId (@RequestBody OrderParams params){
         MyOrderListVO myOrderListVO = orderService.listOrderByUserId(params.getUserId());
         return new ResultBean(myOrderListVO, ResultEnum.SUCCESS);
     }
-
-    @RequestMapping("listAll")
+    @ApiOperation(value = "查看所有订单",httpMethod = "POST")
+    @RequestMapping(value = "listAll",method = RequestMethod.POST)
     public ResultBean listAllOrder (@RequestBody OrderParams params){
         List<Order> orderList = orderService.listOrder();
         return new ResultBean(orderList, ResultEnum.SUCCESS);
     }
-
-    @RequestMapping("info")
+    @ApiOperation(value = "订单详情",httpMethod = "POST")
+    @RequestMapping(value = "info",method = RequestMethod.POST)
     public ResultBean contentInfo(@RequestBody JSONObject params){
         Order order = orderService.selectOrderById(params.getInteger("id"));
         OrderVO orderVO = new OrderVO();

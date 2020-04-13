@@ -30,7 +30,7 @@ import java.util.List;
 @RestController
 @RequestMapping("content/")
 @Slf4j
-@Api(value = "测试内容")
+@Api(value = "内容管理")
 public class ContentController {
 
     @Autowired
@@ -38,7 +38,6 @@ public class ContentController {
 
     @ApiOperation(value = "添加测试内容",httpMethod = "POST")
     @RequestMapping(value = "add",method = RequestMethod.POST)
-    @ApiImplicitParams({})
     public ResultBean addContent (@RequestBody ContentParams params){
         Content content = new Content();
         BeanUtils.copyProperties(params,content);
