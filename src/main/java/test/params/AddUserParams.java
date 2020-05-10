@@ -13,7 +13,7 @@ public class AddUserParams extends BaseParams {
     String password;
     @ApiModelProperty("用户昵称")
     String nikename;
-    @ApiModelProperty("用户年龄")
+    @ApiModelProperty("用户性别")
     String gender;
     @ApiModelProperty("用户头像")
     String portrait;

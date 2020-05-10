@@ -12,8 +12,8 @@ public class ProjectDTO {
     String name;
     String showPicture;
     String deleted;
-    int price;
-    int duration;
+    Integer price;
+    Integer duration;
     String type;
     String description;
     String detailPicture;

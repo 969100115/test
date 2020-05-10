@@ -19,4 +19,6 @@ public interface ProjectService {
     List<Project> listProject();
 
     List<Project> searchByName(String name);
+
+    List<String> listProjectType();
 }

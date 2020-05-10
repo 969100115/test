@@ -7,11 +7,11 @@ import java.io.*;
 
 @Service
 public class FileServiceImpl implements FileService {
-    private String path = "D:\\text";
+    private String path = "*/photo/";
 
     @Override
     public File uploadFile(byte[] contentInBytes ,String uuid,String type) throws IOException {
-        File file = new File(path+"\\"+uuid+"."+type);
+        File file = new File(path+"/"+uuid+"."+type);
         if (!file.exists()) {
             file.createNewFile();
         }

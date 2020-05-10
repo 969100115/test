@@ -30,9 +30,9 @@ public class Project {
     @Column(name = "deleted")
     boolean deleted = false;
     @ApiModelProperty("价格")
-    int price;
+    Integer price;
     @ApiModelProperty("难度系数")
-    int duration;
+    Integer duration;
     @ApiModelProperty("分类")
     String type;
     @ApiModelProperty("描述")

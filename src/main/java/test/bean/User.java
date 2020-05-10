@@ -3,10 +3,7 @@ package test.bean;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * @author Wenbo
@@ -17,25 +14,43 @@ import javax.persistence.Table;
 @Data
 @Table(name = "user")
 public class User {
-    @javax.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int Id;
+    Integer Id;
+
+    @Column(name = "name")
     @ApiModelProperty("用户姓名")
     String name;
+
+    @Column(name = "phone")
     @ApiModelProperty("用户联系方式")
     String phone;
+
+    @Column(name = "password")
     @ApiModelProperty("用户密码")
     String password;
+
+    @Column(name = "nikename")
     @ApiModelProperty("用户昵称")
     String nikename;
-    @ApiModelProperty("用户年龄")
+
+    @Column(name = "gender")
+    @ApiModelProperty("用户性别")
     String gender;
+
+    @Column(name = "portrait")
     @ApiModelProperty("用户头像")
     String portrait;
+
+    @Column(name = "deleted")
     @ApiModelProperty("是否删除")
     boolean deleted;
+
+    @Column(name = "permission")
     @ApiModelProperty("用户权限")
     String permission;
+
+    @Column(name = "mail")
     @ApiModelProperty("用户邮箱")
     String mail;
 

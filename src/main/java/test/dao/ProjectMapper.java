@@ -13,4 +13,5 @@ import java.util.List;
 public interface ProjectMapper extends BaseMapper<Project> {
     List<Project> listProjectByType(@Param("type")String type);
     List<Project> searchByName(@Param("name")String name);
+    List<String> listProjectType();
 }

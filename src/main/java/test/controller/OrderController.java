@@ -32,34 +32,38 @@ public class OrderController {
 
     @Autowired
     OrderService orderService;
-    @ApiOperation(value = "新建订单",httpMethod = "POST")
-    @RequestMapping(value = "add",method = RequestMethod.POST)
-    public ResultBean addContent (@RequestBody OrderParams params){
+
+    @ApiOperation(value = "新建订单", httpMethod = "POST")
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResultBean addContent(@RequestBody OrderParams params) {
         Order order = new Order();
-        BeanUtils.copyProperties(params,order);
+        BeanUtils.copyProperties(params, order);
         orderService.insertOrder(order);
         OrderVO orderVO = new OrderVO();
-        BeanUtils.copyProperties(params,orderVO);
+        BeanUtils.copyProperties(params, orderVO);
         return new ResultBean(orderVO, ResultEnum.SUCCESS);
     }
-    @ApiOperation(value = "查询用户所有订单，按状态分类",httpMethod = "POST")
-    @RequestMapping(value = "listByUserId",method = RequestMethod.POST)
-    public ResultBean listOrderByUserId (@RequestBody OrderParams params){
-        MyOrderListVO myOrderListVO = orderService.listOrderByUserId(params.getUserId());
+
+    @ApiOperation(value = "查询用户所有订单，按状态分类", httpMethod = "POST")
+    @RequestMapping(value = "listByUserId", method = RequestMethod.POST)
+    public ResultBean listOrderByUserId(@RequestBody JSONObject params) {
+        MyOrderListVO myOrderListVO = orderService.listOrderByUserId(params.getInteger("userId"));
         return new ResultBean(myOrderListVO, ResultEnum.SUCCESS);
     }
-    @ApiOperation(value = "查看所有订单",httpMethod = "POST")
-    @RequestMapping(value = "listAll",method = RequestMethod.POST)
-    public ResultBean listAllOrder (@RequestBody OrderParams params){
+
+    @ApiOperation(value = "查看所有订单", httpMethod = "POST")
+    @RequestMapping(value = "listAll", method = RequestMethod.POST)
+    public ResultBean listAllOrder(@RequestBody JSONObject params) {
         List<Order> orderList = orderService.listOrder();
         return new ResultBean(orderList, ResultEnum.SUCCESS);
     }
-    @ApiOperation(value = "订单详情",httpMethod = "POST")
-    @RequestMapping(value = "info",method = RequestMethod.POST)
-    public ResultBean contentInfo(@RequestBody JSONObject params){
+
+    @ApiOperation(value = "订单详情", httpMethod = "POST")
+    @RequestMapping(value = "info", method = RequestMethod.POST)
+    public ResultBean contentInfo(@RequestBody JSONObject params) {
         Order order = orderService.selectOrderById(params.getInteger("id"));
         OrderVO orderVO = new OrderVO();
-        BeanUtils.copyProperties(order,orderVO);
+        BeanUtils.copyProperties(order, orderVO);
         return new ResultBean(orderVO, ResultEnum.SUCCESS);
     }
 

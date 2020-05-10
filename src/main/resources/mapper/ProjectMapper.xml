@@ -7,7 +7,10 @@
         select * from project where type = #{type}
     </select>
     <select id="searchByName" resultType="test.bean.Project" parameterType="String">
-        select * from project where name like '%'#{type}'%'
+        select * from project where name like CONCAT('%','${name}','%' )
+    </select>
+    <select id="listProjectType" resultType="java.lang.String">
+        select type from project group by type
     </select>
 
 

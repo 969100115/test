@@ -56,4 +56,9 @@ public class ProjectServiceImpl implements ProjectService {
     public List<Project> searchByName(String name) {
         return projectMapper.searchByName(name);
     }
+
+    @Override
+    public List<String> listProjectType() {
+        return projectMapper.listProjectType();
+    }
 }

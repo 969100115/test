@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.dao.CommentMapper">
+    <update id="pickComment">
+        update comment set numbers=numbers+1 where projectId = #{projectId}
+    </update>
+
+
+    <select id="listCommentByType" resultType="test.bean.Comment">
+        select * from comment where projectId = #{projectId}
+        <if test="type != ''">
+            and type = #{type}
+        </if>
+    </select>
+</mapper>

@@ -33,41 +33,54 @@ public class ProjectController {
 
     @Autowired
     ProjectService projectService;
-    @ApiOperation(value = "添加主题内容",httpMethod = "POST")
-    @RequestMapping(value = "add",method = RequestMethod.POST)
-    public ResultBean addProject (@RequestBody ProjectParams params){
+
+    @ApiOperation(value = "添加主题内容", httpMethod = "POST")
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    public ResultBean addProject(@RequestBody ProjectParams params) {
         Project project = new Project();
-        BeanUtils.copyProperties(params,project);
+        BeanUtils.copyProperties(params, project);
         projectService.insertProject(project);
         ProjectVO projectVO = new ProjectVO();
-        BeanUtils.copyProperties(params,projectVO);
+        BeanUtils.copyProperties(params, projectVO);
         return new ResultBean(projectVO, ResultEnum.SUCCESS);
     }
-    @ApiOperation(value = "查看主题详情",httpMethod = "POST")
-    @RequestMapping(value = "info",method = RequestMethod.POST)
-    public ResultBean projectInfo(@RequestBody JSONObject params){
+
+    @ApiOperation(value = "查看主题详情", httpMethod = "POST")
+    @RequestMapping(value = "info", method = RequestMethod.POST)
+    public ResultBean projectInfo(@RequestBody JSONObject params) {
         ProjectDTO projectDTO = projectService.selectProjectById(params.getInteger("id"));
         ProjectVO projectVO = new ProjectVO();
-        BeanUtils.copyProperties(projectDTO,projectVO);
+        BeanUtils.copyProperties(projectDTO, projectVO);
         return new ResultBean(projectVO, ResultEnum.SUCCESS);
     }
-    @ApiOperation(value = "通过类型筛选主题",httpMethod = "POST")
-    @RequestMapping(value = "listByType",method = RequestMethod.POST)
-    public ResultBean listProjectByType (@RequestBody ProjectParams params){
-        List<Project> projectList = projectService.listProjectByType(params.getType());
+
+    @ApiOperation(value = "通过类型筛选主题", httpMethod = "POST")
+    @RequestMapping(value = "listByType", method = RequestMethod.POST)
+    public ResultBean listProjectByType(@RequestBody JSONObject params) {
+        List<Project> projectList = projectService.listProjectByType(params.getString("type"));
         return new ResultBean(projectList, ResultEnum.SUCCESS);
     }
-    @ApiOperation(value = "查看所有主题",httpMethod = "POST")
-    @RequestMapping(value = "listAll",method = RequestMethod.POST)
-    public ResultBean listAllProject (@RequestBody ProjectParams params){
+
+    @ApiOperation(value = "查看所有主题", httpMethod = "POST")
+    @RequestMapping(value = "listAll", method = RequestMethod.POST)
+    public ResultBean listAllProject(@RequestBody JSONObject params) {
         List<Project> projectList = projectService.listProject();
         return new ResultBean(projectList, ResultEnum.SUCCESS);
     }
-    @ApiOperation(value = "通过名字检索主题",httpMethod = "POST")
-    @RequestMapping(value = "searchByName",method = RequestMethod.POST)
-    public ResultBean searchByName (@RequestBody ProjectParams params){
-        List<Project> projectList = projectService.searchByName(params.getName());
+
+    @ApiOperation(value = "通过名字检索主题", httpMethod = "POST")
+    @RequestMapping(value = "searchByName", method = RequestMethod.POST)
+    public ResultBean searchByName(@RequestBody JSONObject params) {
+        List<Project> projectList = projectService.searchByName(params.getString("name"));
         return new ResultBean(projectList, ResultEnum.SUCCESS);
+    }
+
+
+    @ApiOperation(value = "查看所有主题类型", httpMethod = "POST")
+    @RequestMapping(value = "listProjectType", method = RequestMethod.POST)
+    public ResultBean listProjectType(@RequestBody JSONObject params) {
+        List<String> typeList = projectService.listProjectType();
+        return new ResultBean(typeList, ResultEnum.SUCCESS);
     }
 
 }

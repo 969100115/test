@@ -2,9 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="test.dao.UserMapper">
-<update id="updatePassword" parameterType="test.params.UpdatePasswordParams">
+    <update id="updatePassword" parameterType="test.params.UpdatePasswordParams">
         update user set password = #{password} where id = #{id}
     </update>
+    <select id="getUserByPhone" resultType="test.bean.User">
+        select * from user where phone = #{phone}
+    </select>
 
 
 </mapper>
