@@ -8,7 +8,10 @@
     </select>
 
     <select id="listContentByProjectId" resultType="test.bean.Content" parameterType="integer">
-        select * from content where id in (select id from project_content where projectId = #{projectId})
+        select * from content where id in (select contentId from project_content where projectId = #{projectId})
+    </select>
+    <select id="listContentIdByProjectId" resultType="java.lang.Integer">
+        select contentId from project_content where projectId = #{projectId}
     </select>
 
 </mapper>

@@ -9,6 +9,7 @@ import test.dao.OrderMapper;
 import test.dto.CommentSelectDTO;
 import test.service.CommentService;
 import test.service.OrderService;
+import test.vo.CommentVO;
 import test.vo.MyOrderListVO;
 import test.vo.OrderVO;
 
@@ -40,7 +41,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> listCommentByType(CommentSelectDTO commentSelectDTO) {
+    public List<CommentVO> listCommentByType(CommentSelectDTO commentSelectDTO) {
         return commentMapper.listCommentByType(commentSelectDTO.getType(),commentSelectDTO.getProjectId());
     }
 

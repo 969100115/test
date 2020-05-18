@@ -7,6 +7,8 @@ import test.service.*;
 import test.dao.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import test.vo.ProjectContentIdVO;
+import test.vo.ProjectVO;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -48,8 +50,8 @@ public class ProjectServiceImpl implements ProjectService {
     }
 
     @Override
-    public List<Project> listProject() {
-        return projectMapper.selectAll();
+    public List<ProjectContentIdVO> listProject() {
+        return projectMapper.listProjectAll();
     }
 
     @Override
@@ -60,5 +62,14 @@ public class ProjectServiceImpl implements ProjectService {
     @Override
     public List<String> listProjectType() {
         return projectMapper.listProjectType();
+    }
+
+    @Override
+    public int insertProjectContent(Integer projectId,List<Integer> contentIdList){
+        projectMapper.deleteRelationByProjectId(projectId);
+        for (Integer id:contentIdList){
+            projectMapper.insertProjectContent(id,projectId);
+        }
+        return contentIdList.size();
     }
 }

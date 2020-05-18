@@ -18,4 +18,6 @@ public interface ContentService {
     List<Content> listContent();
 
     List<Content> listContentByProjectId(Integer projectId);
+
+    List<Integer> listContentIdByProjectId(Integer projectId);
 }

@@ -3,7 +3,7 @@
 <mapper namespace="test.dao.OrderMapper">
 
     <select id="listOrderByUserId" resultType="test.bean.Order" parameterType="integer">
-        select * from `order` where userId = #{userId}
+        select * from `order1` where userId = #{userId}
     </select>
 
 

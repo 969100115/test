@@ -3,10 +3,8 @@ package test.bean;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * @author Wenbo
@@ -15,11 +13,12 @@ import javax.persistence.Id;
  * @phone 176****7037
  */
 @Data
+@Table(name = "order1")
 public class Order {
 
     @javax.persistence.Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer Id;
+    Integer id;
 
     @ApiModelProperty("主题Id")
     @Column(name = "projectId")
@@ -39,17 +38,17 @@ public class Order {
 
     @ApiModelProperty("订单创建时间")
     @Column(name = "createTime")
-    String createTime;
+    Date createTime ;
 
     @ApiModelProperty("测试时间")
     @Column(name = "testPredictTime")
-    String testPredictTime;
+    Date testPredictTime;
 
     @ApiModelProperty("测试完成时间")
     @Column(name = "testCompleteTime")
-    String testCompleteTime;
+    Date testCompleteTime;
 
     @ApiModelProperty("订单完成时间")
     @Column(name = "orderCompleteTime")
-    String orderCompleteTime;
+    Date orderCompleteTime;
 }

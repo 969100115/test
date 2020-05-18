@@ -18,8 +18,11 @@ import test.common.ResultEnum;
 import test.dto.ProjectDTO;
 import test.params.AddUserParams;
 import test.params.ProjectParams;
+import test.params.UploadProjectParams;
+import test.service.ContentService;
 import test.service.ProjectService;
 import test.vo.ContentVO;
+import test.vo.ProjectContentIdVO;
 import test.vo.ProjectVO;
 import test.vo.UserVO;
 
@@ -33,6 +36,8 @@ public class ProjectController {
 
     @Autowired
     ProjectService projectService;
+    @Autowired
+    ContentService contentService;
 
     @ApiOperation(value = "添加主题内容", httpMethod = "POST")
     @RequestMapping(value = "add", method = RequestMethod.POST)
@@ -44,6 +49,19 @@ public class ProjectController {
         BeanUtils.copyProperties(params, projectVO);
         return new ResultBean(projectVO, ResultEnum.SUCCESS);
     }
+
+    @ApiOperation(value = "修改主题信息", httpMethod = "POST")
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    public ResultBean updateProject(@RequestBody UploadProjectParams params) {
+        Project project = new Project();
+        BeanUtils.copyProperties(params, project);
+        projectService.insertProjectContent(params.getId(),params.getContentIdList());
+        projectService.updateProject(project);
+        ProjectContentIdVO projectVO = new ProjectContentIdVO();
+        BeanUtils.copyProperties(params, projectVO);
+        return new ResultBean(projectVO, ResultEnum.SUCCESS);
+    }
+
 
     @ApiOperation(value = "查看主题详情", httpMethod = "POST")
     @RequestMapping(value = "info", method = RequestMethod.POST)
@@ -64,7 +82,12 @@ public class ProjectController {
     @ApiOperation(value = "查看所有主题", httpMethod = "POST")
     @RequestMapping(value = "listAll", method = RequestMethod.POST)
     public ResultBean listAllProject(@RequestBody JSONObject params) {
-        List<Project> projectList = projectService.listProject();
+        List<ProjectContentIdVO> projectList = projectService.listProject();
+        for (ProjectContentIdVO projectVO:projectList){
+            Integer projectId = projectVO.getId();
+            List<Integer> contentIdList = contentService.listContentIdByProjectId(projectId);
+            projectVO.setContentIdList(contentIdList);
+        }
         return new ResultBean(projectList, ResultEnum.SUCCESS);
     }
 
@@ -83,4 +106,10 @@ public class ProjectController {
         return new ResultBean(typeList, ResultEnum.SUCCESS);
     }
 
+    @ApiOperation(value = "删除主题", httpMethod = "POST")
+    @RequestMapping(value = "delByProjectId", method = RequestMethod.POST)
+    public ResultBean delByProjectId(@RequestBody JSONObject params) {
+        projectService.deleteProjectById(params.getInteger("id"));
+        return new ResultBean(true, ResultEnum.SUCCESS);
+    }
 }

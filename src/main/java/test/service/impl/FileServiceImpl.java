@@ -7,7 +7,7 @@ import java.io.*;
 
 @Service
 public class FileServiceImpl implements FileService {
-    private String path = "*/photo/";
+    private String path = "/usr/local/webserver/nginx/html/photo";
 
     @Override
     public File uploadFile(byte[] contentInBytes ,String uuid,String type) throws IOException {

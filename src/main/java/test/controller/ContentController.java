@@ -19,6 +19,7 @@ import test.common.ResultBean;
 import test.common.ResultEnum;
 import test.params.ContentParams;
 import test.params.ProjectParams;
+import test.params.UploadContentParams;
 import test.service.ContentService;
 import test.service.ProjectService;
 import test.vo.ContentVO;
@@ -39,6 +40,17 @@ public class ContentController {
     @ApiOperation(value = "添加测试内容", httpMethod = "POST")
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public ResultBean addContent(@RequestBody ContentParams params) {
+        Content content = new Content();
+        BeanUtils.copyProperties(params, content);
+        contentService.insertContent(content);
+        ContentVO contentVO = new ContentVO();
+        BeanUtils.copyProperties(params, contentVO);
+        return new ResultBean(contentVO, ResultEnum.SUCCESS);
+    }
+
+    @ApiOperation(value = "修改测试内容", httpMethod = "POST")
+    @RequestMapping(value = "upload", method = RequestMethod.POST)
+    public ResultBean uploadContent(@RequestBody UploadContentParams params) {
         Content content = new Content();
         BeanUtils.copyProperties(params, content);
         contentService.insertContent(content);

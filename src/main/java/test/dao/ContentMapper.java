@@ -15,4 +15,6 @@ import java.util.List;
 public interface ContentMapper extends BaseMapper<Content> {
     List<Content> listContentByType(@Param("type")String type);
     List<Content> listContentByProjectId(@Param("projectId") Integer userId);
+    List<Integer> listContentIdByProjectId(@Param("projectId") Integer userId);
+
 }

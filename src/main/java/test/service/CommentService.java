@@ -6,6 +6,7 @@ import test.bean.Order;
 import test.dao.CommentMapper;
 import test.dao.OrderMapper;
 import test.dto.CommentSelectDTO;
+import test.vo.CommentVO;
 import test.vo.MyOrderListVO;
 
 import javax.annotation.Resource;
@@ -24,7 +25,7 @@ public interface CommentService {
 
     Comment selectCommentById(int id);
 
-    List<Comment> listCommentByType(CommentSelectDTO commentSelectDTO);
+    List<CommentVO> listCommentByType(CommentSelectDTO commentSelectDTO);
 
     List<Comment> listComment();
 

@@ -4,16 +4,19 @@ import lombok.Data;
 import org.springframework.beans.BeanUtils;
 import test.bean.Order;
 
+import java.util.Date;
+
 @Data
 public class OrderVO {
     int projectId;
     int price;
     int userId;
     String status;
-    String createTime;
-    String testPredictTime;
-    String testCompleteTime;
-    String orderCompleteTime;
+    Date createTime;
+    Date testPredictTime;
+    Date testCompleteTime;
+    Date orderCompleteTime;
+
 
     public static OrderVO createOrderVO(Order order) {
         OrderVO orderVO = new OrderVO();

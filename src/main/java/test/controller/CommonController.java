@@ -33,8 +33,9 @@ public class CommonController {
 
         String[] type = file.getOriginalFilename().split("\\.");
         byte[] fileByte = file.getBytes();
-        fileService.uploadFile(fileByte, UUID.randomUUID().toString(),type[1]);
-        return new ResultBean("success",ResultEnum.SUCCESS);
+        File file1 = fileService.uploadFile(fileByte, UUID.randomUUID().toString(),type[1]);
+        String filePath = "120.26.88.248" + file1.getAbsolutePath().split("html")[1];
+        return new ResultBean(filePath,ResultEnum.SUCCESS);
     }
 
 }

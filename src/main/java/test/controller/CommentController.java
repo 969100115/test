@@ -51,7 +51,7 @@ public class CommentController {
     public ResultBean listByProjectId(@RequestBody CommentSelectParams params) {
         CommentSelectDTO comment = new CommentSelectDTO();
         BeanUtils.copyProperties(params, comment);
-        List<Comment> commentList = commentService.listCommentByType(comment);
+        List<CommentVO> commentList = commentService.listCommentByType(comment);
         return new ResultBean(commentList, ResultEnum.SUCCESS);
     }
 
@@ -62,6 +62,12 @@ public class CommentController {
         return new ResultBean("成功", ResultEnum.SUCCESS);
     }
 
+    @ApiOperation(value = "删除评论", httpMethod = "POST")
+    @RequestMapping(value = "delBycommentId", method = RequestMethod.POST)
+    public ResultBean delByCommentId(@RequestBody JSONObject params) {
+        commentService.deleteCommentById(params.getInteger("id"));
+        return new ResultBean(true, ResultEnum.SUCCESS);
+    }
 
 
 }

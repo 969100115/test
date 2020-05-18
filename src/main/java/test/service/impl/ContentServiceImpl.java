@@ -48,4 +48,8 @@ public class ContentServiceImpl implements ContentService {
     public List<Content> listContentByProjectId(Integer projectId) {
         return contentMapper.listContentByProjectId(projectId);
     }
+    @Override
+    public List<Integer> listContentIdByProjectId(Integer projectId) {
+        return contentMapper.listContentIdByProjectId(projectId);
+    }
 }

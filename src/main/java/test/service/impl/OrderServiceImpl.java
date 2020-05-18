@@ -37,7 +37,13 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public MyOrderListVO listOrderByUserId(int userId) {
+    public List<Order> listOrderByUserId(int userId) {
+        List<Order> orderList = orderMapper.listOrderByUserId(userId);
+        return orderList;
+    }
+
+    @Override
+    public MyOrderListVO listOrderByUserIdSoutByType(int userId) {
         List<Order> orderList = orderMapper.listOrderByUserId(userId);
         MyOrderListVO myOrderListVO = new MyOrderListVO();
         for (Order order:orderList) {

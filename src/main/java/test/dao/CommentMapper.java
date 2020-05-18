@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import test.bean.Comment;
 import test.bean.Content;
 import test.common.BaseMapper;
+import test.vo.CommentVO;
 
 import java.util.List;
 
@@ -13,6 +14,6 @@ import java.util.List;
 @Repository
 public interface CommentMapper extends BaseMapper<Comment> {
 
-    List<Comment> listCommentByType(@Param("type") String type,@Param("projectId") Integer projectId);
+    List<CommentVO> listCommentByType(@Param("type") String type, @Param("projectId") Integer projectId);
     int pickComment(@Param("project") Integer projectId);
 }

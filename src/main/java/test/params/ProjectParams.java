@@ -4,6 +4,8 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Column;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 public class ProjectParams extends BaseParams {

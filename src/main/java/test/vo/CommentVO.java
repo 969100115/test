@@ -17,4 +17,6 @@ public class CommentVO {
     Integer numbers;
     @ApiModelProperty("评论type")
     String type;
+    @ApiModelProperty("用户name")
+    String name;
 }

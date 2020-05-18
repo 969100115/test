@@ -14,7 +14,9 @@ public interface OrderService {
 
     public Order selectOrderById(int id);
 
-    MyOrderListVO listOrderByUserId(int userId);
+    List<Order> listOrderByUserId(int userId);
+
+    MyOrderListVO listOrderByUserIdSoutByType(int userId);
 
     List<Order> listOrder();
 
