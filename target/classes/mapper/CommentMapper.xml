@@ -7,8 +7,8 @@
     </update>
 
 
-    <select id="listCommentByType" resultType="test.bean.Comment">
-        select * from comment where projectId = #{projectId}
+    <select id="listCommentByType" resultType="test.params.CommentVO">
+        select * from comment left join user on user.id = comment.userId where projectId = #{projectId}
         <if test="type != ''">
             and type = #{type}
         </if>
