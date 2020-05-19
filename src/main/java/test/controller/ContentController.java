@@ -26,7 +26,7 @@ import test.vo.ContentVO;
 import test.vo.ProjectVO;
 import test.vo.UserVO;
 
-import java.util.List;
+import java.util.*;
 
 @RestController
 @RequestMapping("content/")
@@ -53,7 +53,7 @@ public class ContentController {
     public ResultBean uploadContent(@RequestBody UploadContentParams params) {
         Content content = new Content();
         BeanUtils.copyProperties(params, content);
-        contentService.insertContent(content);
+        contentService.updateContent(content);
         ContentVO contentVO = new ContentVO();
         BeanUtils.copyProperties(params, contentVO);
         return new ResultBean(contentVO, ResultEnum.SUCCESS);
