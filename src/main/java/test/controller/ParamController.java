@@ -24,7 +24,7 @@ import test.service.OrderService;
 import test.service.ProjectParamService;
 import test.service.ProjectService;
 
-
+import org.apache.commons.lang3.StringUtils;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -178,8 +178,18 @@ public class ParamController {
 
             FileInputStream fileInputStream = new FileInputStream(file);
             //设置Http响应头告诉浏览器下载这个附件,下载的文件名也是在这里设置的
-            response.setHeader("Content-Disposition", "attachment;Filename=" + URLEncoder.encode(filename, "UTF-8"));
-            OutputStream outputStream = response.getOutputStream();
+        String userAgent = request.getHeader("USER-AGENT");
+
+        if(StringUtils.contains(userAgent, "MSIE")){//IE浏览器
+            filename = URLEncoder.encode(filename,"UTF8");
+        }else if(StringUtils.contains(userAgent, "Mozilla")){//google,火狐浏览器
+            filename = new String(filename.getBytes(), "ISO8859-1");
+        }else{
+            filename = URLEncoder.encode(filename,"UTF8");//其他浏览器
+        }
+        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+        response.setContentType("multipart/form-data");
+        OutputStream outputStream = response.getOutputStream();
             byte[] bytes = new byte[2048];
             int len = 0;
             while ((len = fileInputStream.read(bytes))>0){
