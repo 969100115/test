@@ -149,6 +149,7 @@ public class ParamController {
             e.printStackTrace();
         }
         order.setStatus("3");
+        order.setTestPredictTime(now);
         orderService.updateOrder(order);
         return new ResultBean("ok",ResultEnum.SUCCESS);
     }
@@ -188,9 +189,24 @@ public class ParamController {
             outputStream.close();
         Order order = orderService.selectOrderById(Integer.valueOf(word.get("orderId").toString()));
         order.setStatus("4");
+        if(!"".equals(order.getTestCompleteTime())) {
+            order.setTestCompleteTime(new Date());
+        }
         orderService.updateOrder(order);
         return new ResultBean("ok",ResultEnum.SUCCESS);
     }
 
+    @ApiOperation(value = "清楚参数", httpMethod = "POST")
+    @RequestMapping(value = "CleanParams", method = RequestMethod.POST)
+    public ResultBean downloadFile(@RequestBody Map map ) {
+        if(null!=map.get("orderId")){
+            projectParamMapper.deleteParams(Integer.valueOf(map.get("orderId").toString()));
+            projectParamMapper.deleteway(Integer.valueOf(map.get("orderId").toString()));
+            return new ResultBean("ok",ResultEnum.SUCCESS);
+        }else {
+            return new ResultBean("没有这条记录",ResultEnum.ERROR);
+        }
+
+    }
 
 }

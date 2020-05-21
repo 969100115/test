@@ -15,5 +15,6 @@ public interface ProjectParamMapper extends BaseMapper<ProjectParam> {
     String getWaydownload(@Param("orderid")Integer orderid);
     Integer insertway(@Param("orderid")Integer orderId,@Param("way")String way,@Param("status")String status);
     Integer insertvalue(@Param("orderid")Integer orderId,@Param("param")String param,@Param("value")String value);
-
+    Integer deleteParams(@Param("orderid")Integer orderid);
+    Integer deleteway(@Param("orderid")Integer orderid);
 }

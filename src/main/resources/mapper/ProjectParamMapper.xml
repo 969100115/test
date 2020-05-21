@@ -22,5 +22,13 @@
         INSERT INTO `projectparams`(`orderid`,`param`, `value`) VALUES ( #{orderid}, #{param},#{value})
     </insert>
 
+    <delete id="deleteParams">
+        delete from projectparams where orderid = #{orderid}
+    </delete>
+
+    <delete id="deleteway">
+        delete from orderdownload where orderid = #{orderid}
+    </delete>
+
 </mapper>
 
