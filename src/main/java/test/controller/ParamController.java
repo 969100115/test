@@ -113,7 +113,7 @@ public class ParamController {
             map.put("TestDifficulty",projectDTO.getDuration().toString());
             map.put("TestFun",projectDTO.getDescription());
             for (ProjectParam projectParam : projectParams) {
-                if(!"Result".equals(projectParam.getParam())){
+                if(!"结论".equals(projectParam.getParam())){
                     map.put("Name" + n.toString(), projectParam.getParam());
                     map.put("Param" + n.toString(), projectParam.getValue());
                     n++;
