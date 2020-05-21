@@ -5,6 +5,7 @@
     <insert id="insertProjectContent">
         INSERT INTO `project_content`(`contentId`, `projectId`) VALUES ( #{contentId}, #{projectId})
     </insert>
+
     <delete id="deleteRelationByProjectId">
         delete FROM `project_content` where projectId = #{projectId}
     </delete>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test.dao.ProjectParamMapper">
+    <select id="listProjectParamByOrderId" resultType="test.bean.ProjectParam" parameterType="Integer">
+        select * from projectparams where orderid = #{orderid}
+    </select>
+
+    <select id="getStatusdownload" resultType="String" parameterType="Integer">
+        select status from orderdownload where orderid = #{orderid}
+    </select>
+
+    <select id="getWaydownload" resultType="String" parameterType="Integer">
+        select way from orderdownload where orderid = #{orderid}
+    </select>
+
+    <insert id="insertway">
+        INSERT INTO `orderdownload`(`orderid`,`way`, `status`) VALUES ( #{orderid}, #{way},#{status})
+    </insert>
+
+    <insert id="insertvalue">
+        INSERT INTO `projectparams`(`orderid`,`param`, `value`) VALUES ( #{orderid}, #{param},#{value})
+    </insert>
+
+</mapper>
+
