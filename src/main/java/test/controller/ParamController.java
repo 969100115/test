@@ -166,20 +166,17 @@ public class ParamController {
             String filename="测试结果"+way+".pdf";
             String filePath = "/opt/java/earn/file/"+filename;
 //             String filePath = "/Users/suxinhaixp/Desktop/"+filename;
-
             System.out.println("文件路径：" + filePath);
-
             //得到该文件
             File file = new File(filePath);
             if(!file.exists()){
                 System.out.println("Have no such file!");
                 return new ResultBean("文件不存在",ResultEnum.ERROR);//文件不存在就退出方法
             }
-
             FileInputStream fileInputStream = new FileInputStream(file);
             //设置Http响应头告诉浏览器下载这个附件,下载的文件名也是在这里设置的
         String userAgent = request.getHeader("USER-AGENT");
-
+        filename="测试结果.pdf";
         if(StringUtils.contains(userAgent, "MSIE")){//IE浏览器
             filename = URLEncoder.encode(filename,"UTF8");
         }else if(StringUtils.contains(userAgent, "Mozilla")){//google,火狐浏览器
@@ -187,8 +184,8 @@ public class ParamController {
         }else{
             filename = URLEncoder.encode(filename,"UTF8");//其他浏览器
         }
-        response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
         response.setContentType("multipart/form-data");
+        response.setHeader("Content-Disposition", "attachment; filename=\""+filename+"\"");
         OutputStream outputStream = response.getOutputStream();
             byte[] bytes = new byte[2048];
             int len = 0;
@@ -203,7 +200,7 @@ public class ParamController {
             order.setTestCompleteTime(new Date());
         }
         orderService.updateOrder(order);
-        return new ResultBean("ok",ResultEnum.SUCCESS);
+        return null;
     }
 
     @ApiOperation(value = "清楚参数", httpMethod = "POST")
